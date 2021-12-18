@@ -21,7 +21,7 @@ function Logo() {
         marginRight: '10px',
       }}
     >
-      <Circle />
+      <img src="./logo.svg" alt="" />
       <Iamground>IAMGROUND</Iamground>
     </div>
   )

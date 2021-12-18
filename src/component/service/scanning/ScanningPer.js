@@ -1,51 +1,51 @@
-import React, { useEffect, useState } from "react";
-import TableMaterial from "../../module/TableMaterial";
-import axios from "axios";
-import ModalPer from "../../module/modal/ModalPer";
+import React, { useEffect, useState } from 'react'
+import TableMaterial from '../../module/TableMaterial'
+import axios from 'axios'
+import ModalPer from '../../module/modal/ModalPer'
 
 function ScanningPer({ report_id }) {
-  const [modalOpen, setmodalOpen] = useState(false);
-  const [id, setId] = useState([]);
+  const [modalOpen, setmodalOpen] = useState(false)
+  const [id, setId] = useState([])
   const openModal = (scanInfoId) => {
-    setId(scanInfoId);
-    setmodalOpen(true);
-  };
-  const [tableData, setTableData] = useState([]);
+    setId(scanInfoId)
+    setmodalOpen(true)
+  }
+  const [tableData, setTableData] = useState([])
   const fetchData = async () => {
-    const response = await axios.get(`http://3.34.125.15:8000/api/scan/report/permission?report_id=${report_id}`);
-    setTableData(response.data.permissionList);
-    console.log("PerResponse", response);
-  };
+    const response = await axios.get(`/api/scan/report/permission?report_id=${report_id}`)
+    setTableData(response.data.permissionList)
+    console.log('PerResponse', response)
+  }
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
   const idArray = tableData.map((v, i) => {
-    return v.infoId;
-  });
+    return v.infoId
+  })
   const patchMarking = (infoId, marking) => {
     axios
-      .patch("http://3.34.125.15:8000/api/scan/report", {
+      .patch('/api/scan/report', {
         infoId: infoId,
         mark: marking,
       })
       .then(function (response) {
-        console.log(response);
-        console.log("Send Data", {
+        console.log(response)
+        console.log('Send Data', {
           infoId: infoId,
           mark: marking,
-        });
-      });
-  };
+        })
+      })
+  }
   return (
     <>
-      <div style={{ paddingTop: "50px" }}>
+      <div style={{ paddingTop: '50px' }}>
         <TableMaterial
           columns={[
-            { title: "Resource", field: "resource" },
-            { title: "arn", field: "arn" },
-            { title: "Reason", field: "reason" },
-            { title: "Recommendation", field: "recommendation", align: "center" },
-            { title: "Marking", field: "marking", align: "center" },
+            { title: 'Resource', field: 'resource' },
+            { title: 'arn', field: 'arn' },
+            { title: 'Reason', field: 'reason' },
+            { title: 'Recommendation', field: 'recommendation', align: 'center' },
+            { title: 'Marking', field: 'marking', align: 'center' },
           ]}
           cdata={tableData
             .sort((x, y) => x.mark - y.mark)
@@ -61,7 +61,7 @@ function ScanningPer({ report_id }) {
                   <input type="checkbox" onClick={() => patchMarking(v.scanInfoId, true)} />
                 ),
                 id: v,
-              };
+              }
             })}
           title="Permissions"
           type="scanningper"
@@ -69,7 +69,7 @@ function ScanningPer({ report_id }) {
       </div>
       {modalOpen && <ModalPer modalOpen={modalOpen} setmodalOpen={setmodalOpen} Id={id} />}
     </>
-  );
+  )
 }
 
-export default ScanningPer;
+export default ScanningPer

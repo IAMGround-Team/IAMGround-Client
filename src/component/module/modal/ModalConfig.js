@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import { Clear } from "@mui/icons-material";
-import axios from "axios";
-import styled from "styled-components";
-import { clear } from "dom-helpers";
+import React, { useState, useEffect } from 'react'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Modal from '@mui/material/Modal'
+import { Clear } from '@mui/icons-material'
+import axios from 'axios'
+import styled from 'styled-components'
+import { clear } from 'dom-helpers'
 
 const ModalConfig = ({ modalOpen, setmodalOpen, Id }) => {
   const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
     width: 1200,
     height: 800,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-    overflowY: "auto",
-    overflowX: "auto",
-  };
+    overflowY: 'auto',
+    overflowX: 'auto',
+  }
   const ModalText = styled.div`
     display: flex;
     flex-direction: row;
@@ -30,21 +30,21 @@ const ModalConfig = ({ modalOpen, setmodalOpen, Id }) => {
     width: 1000px;
     height: auto;
     padding-bottom: 10px;
-  `;
+  `
   const TitleDiv = styled.div`
     font-size: 22px;
     font-weight: bold;
     width: 200px;
-  `;
+  `
   const TextDiv = styled.div`
     font-size: 20px;
     width: 1000px;
     white-space: pre-wrap;
-  `;
-  const [recommend, setRecommend] = useState(JSON.parse(Id.recommand));
+  `
+  const [recommend, setRecommend] = useState(JSON.parse(Id.recommand))
   // const [infoData, setInfoData] = useState([]);
   // const fetchData = async () => {
-  //   const response = await axios.get("http://3.34.125.15:8000/mock/scan/report", { params: { info_id: Id } });
+  //   const response = await axios.get("/mock/scan/report", { params: { info_id: Id } });
   //   setInfoData(response);
   // };
   // useEffect(() => {
@@ -56,17 +56,17 @@ const ModalConfig = ({ modalOpen, setmodalOpen, Id }) => {
       <Modal open={modalOpen} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={style}>
           <Clear
-            style={{ fontSize: "26px", cursor: "pointer", position: "fixed", right: "50px" }}
+            style={{ fontSize: '26px', cursor: 'pointer', position: 'fixed', right: '50px' }}
             onClick={() => {
-              setmodalOpen(false);
+              setmodalOpen(false)
             }}
           />
-          <Typography id="modal-modal-title" variant="h6" component="h2" style={{ fontSize: "50px", borderBottom: "5px solid black" }}>
+          <Typography id="modal-modal-title" variant="h6" component="h2" style={{ fontSize: '50px', borderBottom: '5px solid black' }}>
             세부 정보
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }} style={{ paddingTop: "30px" }}>
-            <div style={{ clear: "both" }}>
-              <div style={{ display: "flex", flexDirection: "column", clear: "both" }}>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }} style={{ paddingTop: '30px' }}>
+            <div style={{ clear: 'both' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', clear: 'both' }}>
                 <ModalText>
                   <TitleDiv>클라우드 이름</TitleDiv>
                   <TextDiv>{Id.cloudName}</TextDiv>
@@ -75,7 +75,7 @@ const ModalConfig = ({ modalOpen, setmodalOpen, Id }) => {
                   <TitleDiv>리소스정보</TitleDiv>
                   <TextDiv>
                     {Id.resourceName}
-                    <span style={{ paddingLeft: "30px" }}>({Id.resourceArn})</span>
+                    <span style={{ paddingLeft: '30px' }}>({Id.resourceArn})</span>
                   </TextDiv>
                 </ModalText>
                 <ModalText>
@@ -109,7 +109,7 @@ const ModalConfig = ({ modalOpen, setmodalOpen, Id }) => {
         </Box>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default ModalConfig;
+export default ModalConfig

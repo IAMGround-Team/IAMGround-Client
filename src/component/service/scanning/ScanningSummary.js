@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Div1, Div2, Div3, Div4, Row, SummaryWrapper, Title } from "../style/styled-compo";
-import { ResponsivePie } from "@nivo/pie";
-import { ResponsiveBar } from "@nivo/bar";
-import { ResponsiveBullet } from "@nivo/bullet";
-import WarningIcon from "@mui/icons-material/Warning";
-import GppGoodIcon from "@mui/icons-material/GppGood";
-import TableMaterial from "../../module/TableMaterial";
-import axios from "axios";
+import React, { useEffect, useState } from 'react'
+import { Div1, Div2, Div3, Div4, Row, SummaryWrapper, Title } from '../style/styled-compo'
+import { ResponsivePie } from '@nivo/pie'
+import { ResponsiveBar } from '@nivo/bar'
+import { ResponsiveBullet } from '@nivo/bullet'
+import WarningIcon from '@mui/icons-material/Warning'
+import GppGoodIcon from '@mui/icons-material/GppGood'
+import TableMaterial from '../../module/TableMaterial'
+import axios from 'axios'
 
 const ScanningSummary = ({ report_id }) => {
   const [summaryData, setSummaryData] = useState({
@@ -37,16 +37,16 @@ const ScanningSummary = ({ report_id }) => {
       permissionLast: 0,
     },
     scanResultTable: [],
-  });
+  })
   const fetchData = async () => {
-    const response = await axios.get(`http://3.34.125.15:8000/api/scan/report/summary?report_id=${report_id}`);
-    setSummaryData(response.data.summaryList);
-    console.log("response", response);
-    console.log("summaryData", summaryData);
-  };
+    const response = await axios.get(`/api/scan/report/summary?report_id=${report_id}`)
+    setSummaryData(response.data.summaryList)
+    console.log('response', response)
+    console.log('summaryData', summaryData)
+  }
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   /* ********************반원 그래프******************** */
 
@@ -81,12 +81,12 @@ const ScanningSummary = ({ report_id }) => {
   // ];
 
   const colors = {
-    "Risky IAM Resources": "   #b7d6da",
-    "Normal IAM Resources": "   #C3B8B5",
-    "Risky Config Criteria": "   #b7d6da",
-    "Normal Config Criteria": "   #C3B8B5",
-  };
-  const getColor = (pie) => colors[pie.id];
+    'Risky IAM Resources': '   #b7d6da',
+    'Normal IAM Resources': '   #C3B8B5',
+    'Risky Config Criteria': '   #b7d6da',
+    'Normal Config Criteria': '   #C3B8B5',
+  }
+  const getColor = (pie) => colors[pie.id]
 
   const MyResponsivePie = ({ data }) => (
     <ResponsivePie
@@ -97,40 +97,40 @@ const ScanningSummary = ({ report_id }) => {
       activeOuterRadiusOffset={8}
       colors={getColor}
       borderWidth={1}
-      borderColor={{ from: "color", modifiers: [["darker", 0.2]] }}
+      borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
       arcLinkLabelsSkipAngle={10}
       arcLinkLabelsTextColor="#333333"
       arcLinkLabelsThickness={2}
-      arcLinkLabelsColor={{ from: "color" }}
+      arcLinkLabelsColor={{ from: 'color' }}
       arcLabelsSkipAngle={10}
-      arcLabelsTextColor={{ from: "color", modifiers: [["darker", 2]] }}
+      arcLabelsTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
       legends={[
         {
-          anchor: "bottom",
-          direction: "row",
+          anchor: 'bottom',
+          direction: 'row',
           justify: false,
           translateX: 0,
           translateY: 56,
           itemsSpacing: 0,
           itemWidth: 100,
           itemHeight: 18,
-          itemTextColor: "#999",
-          itemDirection: "left-to-right",
+          itemTextColor: '#999',
+          itemDirection: 'left-to-right',
           itemOpacity: 1,
           symbolSize: 18,
-          symbolShape: "circle",
+          symbolShape: 'circle',
           effects: [
             {
-              on: "hover",
+              on: 'hover',
               style: {
-                itemTextColor: "#000",
+                itemTextColor: '#000',
               },
             },
           ],
         },
       ]}
     />
-  );
+  )
 
   /* ********************바 그래프******************** */
 
@@ -171,101 +171,101 @@ const ScanningSummary = ({ report_id }) => {
       spacing={0}
       titleAlign="start"
       titleOffsetX={-57}
-      measureBorderColor={{ from: "color", modifiers: [] }}
+      measureBorderColor={{ from: 'color', modifiers: [] }}
       measureSize={0}
       markerSize={0}
       rangeColors="nivo"
       measureColors="nivo"
     />
-  );
+  )
 
-  const dataPer = ["user", "group", "role", "policy"];
-  const dataConfig = ["PW", "credential", "certificate", "MFA"];
+  const dataPer = ['user', 'group', 'role', 'policy']
+  const dataConfig = ['PW', 'credential', 'certificate', 'MFA']
 
   const Buttons = ({ data }) => (
     <div
       style={{
-        paddingLeft: "170px",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-evenly",
-        width: "60%",
+        paddingLeft: '170px',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: '60%',
       }}
     >
       <span
         style={{
-          color: "#E9C19F",
-          fontSize: "40px",
-          marginTop: "-20px",
-          marginRight: "-50px",
+          color: '#E9C19F',
+          fontSize: '40px',
+          marginTop: '-20px',
+          marginRight: '-50px',
         }}
       >
         ●
       </span>
       <span
         style={{
-          color: "#999999",
-          fontSize: "15px",
+          color: '#999999',
+          fontSize: '15px',
         }}
       >
         {data[0]}
       </span>
       <span
         style={{
-          color: "#F47560",
-          fontSize: "40px",
-          marginTop: "-20px",
-          marginRight: "-50px",
+          color: '#F47560',
+          fontSize: '40px',
+          marginTop: '-20px',
+          marginRight: '-50px',
         }}
       >
         ●
       </span>
       <span
         style={{
-          color: "#999999",
-          fontSize: "15px",
+          color: '#999999',
+          fontSize: '15px',
         }}
       >
         {data[1]}
       </span>
       <span
         style={{
-          color: "#F1E15B",
-          fontSize: "40px",
-          marginTop: "-20px",
-          marginRight: "-50px",
+          color: '#F1E15B',
+          fontSize: '40px',
+          marginTop: '-20px',
+          marginRight: '-50px',
         }}
       >
         ●
       </span>
       <span
         style={{
-          color: "#999999",
-          fontSize: "15px",
+          color: '#999999',
+          fontSize: '15px',
         }}
       >
         {data[2]}
       </span>
       <span
         style={{
-          color: "#E7A838",
-          fontSize: "40px",
-          marginTop: "-20px",
-          marginRight: "-50px",
+          color: '#E7A838',
+          fontSize: '40px',
+          marginTop: '-20px',
+          marginRight: '-50px',
         }}
       >
         ●
       </span>
       <span
         style={{
-          color: "#999999",
-          fontSize: "15px",
+          color: '#999999',
+          fontSize: '15px',
         }}
       >
         {data[3]}
       </span>
     </div>
-  );
+  )
 
   /* ********************차트******************** */
 
@@ -295,53 +295,53 @@ const ScanningSummary = ({ report_id }) => {
   const MyResponsiveChart = ({ data }) => (
     <ResponsiveBar
       data={data}
-      keys={["Last Scan", "Current Scan"]}
+      keys={['Last Scan', 'Current Scan']}
       indexBy="result"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
-      valueScale={{ type: "linear" }}
-      indexScale={{ type: "band", round: true }}
+      valueScale={{ type: 'linear' }}
+      indexScale={{ type: 'band', round: true }}
       // colors={{ scheme: "set2" }}
-      colors={["#C3B8B5", "#b7d6da"]}
-      borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
+      colors={['#C3B8B5', '#b7d6da']}
+      borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
       axisTop={null}
       axisRight={null}
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "",
-        legendPosition: "middle",
+        legend: '',
+        legendPosition: 'middle',
         legendOffset: 32,
       }}
       axisLeft={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "Number of Recommendations",
-        legendPosition: "middle",
+        legend: 'Number of Recommendations',
+        legendPosition: 'middle',
         legendOffset: -40,
       }}
       labelSkipWidth={12}
       labelSkipHeight={12}
-      labelTextColor={{ from: "color", modifiers: [["darker", 1.6]] }}
+      labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
       legends={[
         {
-          dataFrom: "keys",
-          anchor: "bottom-right",
-          direction: "column",
+          dataFrom: 'keys',
+          anchor: 'bottom-right',
+          direction: 'column',
           justify: false,
           translateX: 120,
           translateY: 0,
           itemsSpacing: 2,
           itemWidth: 100,
           itemHeight: 20,
-          itemDirection: "left-to-right",
+          itemDirection: 'left-to-right',
           itemOpacity: 0.85,
           symbolSize: 20,
           effects: [
             {
-              on: "hover",
+              on: 'hover',
               style: {
                 itemOpacity: 1,
               },
@@ -350,36 +350,36 @@ const ScanningSummary = ({ report_id }) => {
         },
       ]}
     />
-  );
+  )
 
   return (
     <SummaryWrapper>
       <Row>
         <Div2>
           <Title>Permission</Title>
-          <div style={{ width: "100%", height: "calc(100% - 100px)" }}>
+          <div style={{ width: '100%', height: 'calc(100% - 100px)' }}>
             <MyResponsivePie
               data={[
                 {
-                  id: "Risky IAM Resources",
-                  label: "Risky",
+                  id: 'Risky IAM Resources',
+                  label: 'Risky',
                   value: summaryData.permissionHalfGraph.riskyCount,
-                  color: "hsl(143, 70%, 50%)",
+                  color: 'hsl(143, 70%, 50%)',
                 },
                 {
-                  id: "Normal IAM Resources",
-                  label: "Normal",
+                  id: 'Normal IAM Resources',
+                  label: 'Normal',
                   value: summaryData.permissionHalfGraph.normalCount,
-                  color: "#FFFFFF",
+                  color: '#FFFFFF',
                 },
               ]}
             ></MyResponsivePie>
           </div>
-          <div style={{ width: "100%", height: "60px" }}>
+          <div style={{ width: '100%', height: '60px' }}>
             <MyResponsiveBullet
               data={[
                 {
-                  id: "",
+                  id: '',
                   ranges: [
                     0,
                     summaryData.permissionBarGraph.userCount,
@@ -397,29 +397,29 @@ const ScanningSummary = ({ report_id }) => {
         </Div2>
         <Div1>
           <Title>Config</Title>
-          <div style={{ width: "100%", height: "calc(100% - 100px)" }}>
+          <div style={{ width: '100%', height: 'calc(100% - 100px)' }}>
             <MyResponsivePie
               data={[
                 {
-                  id: "Risky Config Criteria",
-                  label: "Risky",
+                  id: 'Risky Config Criteria',
+                  label: 'Risky',
                   value: summaryData.configHalfGraph.riskyCount,
-                  color: "# FF0000",
+                  color: '# FF0000',
                 },
                 {
-                  id: "Normal Config Criteria",
-                  label: "Normal",
+                  id: 'Normal Config Criteria',
+                  label: 'Normal',
                   value: summaryData.configHalfGraph.normalCount,
-                  color: "#FFFFFF",
+                  color: '#FFFFFF',
                 },
               ]}
             ></MyResponsivePie>
           </div>
-          <div style={{ width: "100%", height: "60px" }}>
+          <div style={{ width: '100%', height: '60px' }}>
             <MyResponsiveBullet
               data={[
                 {
-                  id: "",
+                  id: '',
                   ranges: [
                     0,
                     summaryData.configBarGraph.pwCount,
@@ -441,52 +441,52 @@ const ScanningSummary = ({ report_id }) => {
           <MyResponsiveChart
             data={[
               {
-                result: "Permission: Last",
-                "Last Scan": summaryData.recommenationChart.permissionLast,
-                "Last ScanColor": "hsl(102, 70%, 50%)",
+                result: 'Permission: Last',
+                'Last Scan': summaryData.recommenationChart.permissionLast,
+                'Last ScanColor': 'hsl(102, 70%, 50%)',
               },
               {
-                result: "Permission: Current",
-                "Current Scan": summaryData.recommenationChart.permissionCurrent,
-                "Current ScanColor": "hsl(102, 70%, 50%)",
+                result: 'Permission: Current',
+                'Current Scan': summaryData.recommenationChart.permissionCurrent,
+                'Current ScanColor': 'hsl(102, 70%, 50%)',
               },
               {
-                result: "Config: Last",
-                "Last Scan": summaryData.recommenationChart.configLast,
-                "Last ScanColor": "hsl(102, 70%, 50%)",
+                result: 'Config: Last',
+                'Last Scan': summaryData.recommenationChart.configLast,
+                'Last ScanColor': 'hsl(102, 70%, 50%)',
               },
               {
-                result: "Config: Current",
-                "Current Scan": summaryData.recommenationChart.configCurrent,
-                "Current ScanColor": "hsl(102, 70%, 50%)",
+                result: 'Config: Current',
+                'Current Scan': summaryData.recommenationChart.configCurrent,
+                'Current ScanColor': 'hsl(102, 70%, 50%)',
               },
             ]}
           ></MyResponsiveChart>
         </Div3>
         <Div4>
-          <div style={{ padding: "20px" }}>
+          <div style={{ padding: '20px' }}>
             <TableMaterial
               columns={[
-                { title: "Resource", field: "resource" },
-                { title: "Recommendation", field: "rec" },
-                { title: "Last Scan", field: "last", align: "center" },
-                { title: "Current Scan", field: "cur", align: "center" },
+                { title: 'Resource', field: 'resource' },
+                { title: 'Recommendation', field: 'rec' },
+                { title: 'Last Scan', field: 'last', align: 'center' },
+                { title: 'Current Scan', field: 'cur', align: 'center' },
               ]}
               cdata={summaryData.scanResultTable.map((v, i) => {
                 return {
                   resource: v.resourceName,
                   rec: v.recommandation,
                   last: v.lastScanResult ? (
-                    <GppGoodIcon style={{ fontSize: "24px", color: "gray", marginTop: "12px" }} />
+                    <GppGoodIcon style={{ fontSize: '24px', color: 'gray', marginTop: '12px' }} />
                   ) : (
-                    <WarningIcon style={{ fontSize: "24px", color: "gray", marginTop: "12px" }} />
+                    <WarningIcon style={{ fontSize: '24px', color: 'gray', marginTop: '12px' }} />
                   ),
                   cur: v.currentScanResult ? (
-                    <GppGoodIcon style={{ fontSize: "24px", color: "gray", marginTop: "12px" }} />
+                    <GppGoodIcon style={{ fontSize: '24px', color: 'gray', marginTop: '12px' }} />
                   ) : (
-                    <WarningIcon style={{ fontSize: "24px", color: "gray", marginTop: "12px" }} />
+                    <WarningIcon style={{ fontSize: '24px', color: 'gray', marginTop: '12px' }} />
                   ),
-                };
+                }
               })}
               title="Recommendations"
               type="scanningsum"
@@ -495,7 +495,7 @@ const ScanningSummary = ({ report_id }) => {
         </Div4>
       </Row>
     </SummaryWrapper>
-  );
-};
+  )
+}
 
-export default ScanningSummary;
+export default ScanningSummary
