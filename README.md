@@ -28,12 +28,13 @@
    * 클라우드 위험도 변화 추이 확인 및 클라우드 간의 비교
 * 클라우드별 스캔 버튼/결과 보고서 보기 버튼
 
-![image](https://user-images.githubusercontent.com/66164561/224379718-32e67e54-5b15-4854-9299-ac0ba9e72fc3.png)
+![image](https://user-images.githubusercontent.com/66164561/224389577-e5591a11-d05b-42ba-bcaf-f21409c45a87.png)
 * 결과 보고서 - 요약
    * 보고서 정보를 시각적으로 요약
    * 계정의 전반적인 상태 파악
    * 이전 스캔 보고서와의 비교를 통해 관리 정도를 확인
-   
+
+![image](https://user-images.githubusercontent.com/66164561/224379718-32e67e54-5b15-4854-9299-ac0ba9e72fc3.png)
 ![image](https://user-images.githubusercontent.com/66164561/224379958-71359279-88c3-4257-a5fe-21a27deb414f.png)
 ![image](https://user-images.githubusercontent.com/66164561/224379968-84f20025-2efc-42ca-95ca-fd8c22a6c13e.png)
 * 결과 보고서 - 권한 분리 추천
